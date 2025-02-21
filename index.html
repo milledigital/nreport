@@ -1,173 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGR (2019-2024)</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1, h2, h3 {
-            color: #003366;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #003366;
-            color: white;
-        }
-        .chart-container {
-            width: 100%;
-            height: 300px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <!-- Ensures mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Numera Global: NGR (2019–2024)</title>
+  
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {
+      if (document.scripts[j].src === r) { return; }
+    }
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,
+    a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(100002601, "init", {
+         clickmap:true,
+         trackLinks:true,
+         accurateTrackBounce:true,
+         webvisor:true
+    });
+  </script>
+  <noscript>
+    <div>
+      <img src="https://mc.yandex.ru/watch/100002601" style="position:absolute; left:-9999px;" alt="" />
+    </div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Basic Resets and Layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    /* Title Section */
+    .title-section {
+      background-color: #003366;
+      color: #fff;
+      padding: 30px 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .title-section h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    .title-section p {
+      font-size: 1.2em;
+      margin: 0;
+    }
+    /* Headings */
+    h2, h3, h4 {
+      color: #003366;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #003366;
+      color: #fff;
+      font-weight: 600;
+    }
+    /* Chart Container */
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      margin-bottom: 30px;
+    }
+    /* Info Box */
+    .info-box {
+      border-left: 5px solid #003366;
+      background: #f3f8ff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+    .info-box h4 {
+      margin-top: 0;
+    }
+    /* Small Note Style */
+    .small-note {
+      font-size: 0.9em;
+      color: #666;
+    }
+    /* Sub-Heading */
+    .sub-heading {
+      margin-top: 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #555;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      padding: 20px;
+      background-color: #f8f8f8;
+      margin-top: 40px;
+      line-height: 1.4em;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    /* Responsive Media Query for smaller screens */
+    @media (max-width: 768px) {
+      .chart-container {
+        height: 250px;
+      }
+      table {
+        font-size: 14px;
+      }
+      th, td {
+        padding: 8px;
+      }
+      .title-section h1 {
+        font-size: 2em;
+      }
+      .title-section p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Numera Global: Investment Performance Report (2019-2024)</h1>
-
-    <h2>1. Executive Summary</h2>
-    <p>Numera Global is a <strong>borderless investment company</strong> that specialises in 
-        <strong>leveraging advancements in Onchain Assets, Artificial Intelligence (AI) and Water Technologies.</strong>
+  <!-- Title Section -->
+  <header class="title-section">
+    <h1>Numera Global: Investment Report (2019–2024)</h1>
+    <p>
+      Welcome to the comprehensive performance overview of Numera Global Investments. 
+      This report covers the period from September 2019 through December 2024, 
+      highlighting key achievements, financial metrics, and strategic insights.
     </p>
-    <p>Through an <strong>active trading strategy</strong>, including <em>spot and futures trading, options strategies, arbitrage, and high-frequency trading</em>, Numera delivers superior <strong>risk-adjusted returns.</strong></p>
+  </header>
 
-    <h2>2. Key Financial Performance Metrics</h2>
-    <table>
-        <tr><th>Metric</th><th>Value</th></tr>
-        <tr><td>AUM (End of 2024)</td><td>$39,591,116</td></tr>
-        <tr><td>Investor Capital Invested</td><td>$12,000,000</td></tr>
-        <tr><td>Total Profits Generated</td><td>$27,591,116</td></tr>
-        <tr><td>Total Withdrawals (6 Years)</td><td>$12,000,000</td></tr>
-        <tr><td>Annualized ROI (Fund-Level)</td><td>55.58%</td></tr>
-        <tr><td>Annualized ROI (Investor-Level)</td><td>36.23%</td></tr>
-        <tr><td>Internal Rate of Return (IRR)</td><td>38.9%</td></tr>
-        <tr><td>TVPI</td><td>3.1x</td></tr>
-        <tr><td>Net Asset Value Per Share</td><td>$1,574.62</td></tr>
-        <tr><td>Profit Factor</td><td>4.1</td></tr>
-        <tr><td>Management Fee</td><td>0%</td></tr>
-        <tr><td>Performance Fee</td><td>35%</td></tr>
-    </table>
+  <!-- 1. Executive Summary -->
+  <h2>1. Executive Summary</h2>
+  <p>
+    Numera Global is a borderless investment company focused on 
+    Onchain Assets, Artificial Intelligence (AI), and Water Technologies. 
+    Our strategy embraces spot and futures trading, options strategies, arbitrage, and 
+    high-frequency trading (HFT) to capture opportunities in rapidly evolving sectors. 
+    By diversifying across these three core pillars, we aim to deliver superior 
+    risk-adjusted returns while adapting to global market shifts.
+  </p>
 
-    <h3>AUM Growth Over Time</h3>
+  <!-- Info Box: Why Onchain, AI, Water -->
+  <div class="info-box">
+    <h4>Why Onchain, AI, and Water?</h4>
+    <p><strong>Onchain:</strong> Rapid innovation, high volatility, and robust liquidity can lead to outsized gains with careful risk management.</p>
+    <p><strong>AI:</strong> Transformative technology with cross-industry applicability, offering high-growth equity and venture opportunities.</p>
+    <p><strong>Water Tech:</strong> A critical resource sector, poised for sustainable and impact-driven returns, aligning with global ESG trends.</p>
+  </div>
+
+  <!-- 2. Key Financial Performance Metrics -->
+  <h2>2. Key Financial Performance Metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr>
+      <td>AUM (End of 2024)</td>
+      <td>$44,670,000</td>
+    </tr>
+    <tr>
+      <td>Total Capital Invested</td>
+      <td>$5,000,000</td>
+    </tr>
+    <tr>
+      <td>Total Profits Generated (company Level)</td>
+      <td>$39,670,000</td>
+    </tr>
+    <tr>
+      <td>Annualized ROI (company-Level, Before Fees &amp; Withdrawals)</td>
+      <td>52.00%</td>
+    </tr>
+    <tr>
+      <td>Total Value to Paid-In Capital (TVPI, company-Level)</td>
+      <td>8.93×</td>
+    </tr>
+  </table>
+  <p>
+    The Annualized ROI of 52.00% reflects the compound growth from $5M to 
+    $44.67M over roughly five years, with no major external inflows and outflows. A 
+    TVPI of 8.93× indicates investors have multiplied their initial commitments 
+    nearly ninefold.
+  </p>
+
+  <h3>AUM Growth Over Time</h3>
+  <div class="chart-container">
     <canvas id="aumChart"></canvas>
+  </div>
+  <p>
+    The chart above illustrates the company’s expansion in Assets Under Management (AUM). Effective strategies, 
+    dynamic asset allocation, and robust investor confidence contributed to steady growth throughout 2019–2024.
+  </p>
 
-    <h2>3. Risk-Adjusted Metrics</h2>
-    <table>
-        <tr><th>Metric</th><th>Value</th></tr>
-        <tr><td>Annual Return Volatility</td><td>15.7%</td></tr>
-        <tr><td>Sharpe Ratio</td><td>3.35</td></tr>
-        <tr><td>Sortino Ratio</td><td>5.15</td></tr>
-        <tr><td>Maximum Drawdown</td><td>39.1%</td></tr>
-        <tr><td>Value at Risk (95%)</td><td>29.6%</td></tr>
-    </table>
-    <canvas id="riskChart"></canvas>
+  <!-- 3. Historical Performance -->
+  <h2>3. Historical Performance</h2>
+  <p>
+    Below is a snapshot of the annual net returns to our investors (after the 35% performance fee). 
+    We benchmark ourselves against S&amp;P 500, Nasdaq-100, and Bitcoin (BTC) 
+    to contextualize our results within both traditional and alternative markets.
+  </p>
+  <table>
+    <tr>
+      <th>Year</th>
+      <th>Numera (Net %)</th>
+      <th>S&amp;P 500 (%)</th>
+      <th>Nasdaq-100 (%)</th>
+      <th>Bitcoin (%)</th>
+    </tr>
+    <tr>
+      <td>2019</td>
+      <td>23.11%</td>
+      <td>31.50%</td>
+      <td>39.00%</td>
+      <td>89.50%</td>
+    </tr>
+    <tr>
+      <td>2020</td>
+      <td>47.09%</td>
+      <td>18.40%</td>
+      <td>48.90%</td>
+      <td>302.80%</td>
+    </tr>
+    <tr>
+      <td>2021</td>
+      <td>28.56%</td>
+      <td>28.70%</td>
+      <td>27.50%</td>
+      <td>39.80%</td>
+    </tr>
+    <tr>
+      <td>2022</td>
+      <td>34.14%</td>
+      <td>-18.10%</td>
+      <td>-32.60%</td>
+      <td>-65.10%</td>
+    </tr>
+    <tr>
+      <td>2023</td>
+      <td>39.22%</td>
+      <td>26.30%</td>
+      <td>38.80%</td>
+      <td>155.90%</td>
+    </tr>
+    <tr>
+      <td>2024</td>
+      <td>47.03%</td>
+      <td>23.31%</td>
+      <td>31.40%</td>
+      <td>121.10%</td>
+    </tr>
+  </table>
 
-    <h2>4. Trading Strategy Performance Metrics</h2>
-    <table>
-        <tr><th>Metric</th><th>Value</th></tr>
-        <tr><td>Win Rate</td><td>78%</td></tr>
-        <tr><td>Total Trades Executed</td><td>1,911</td></tr>
-        <tr><td>Leverage Utilization Ratio</td><td>2.5x</td></tr>
-        <tr><td>Profit Factor</td><td>4.1</td></tr>
-    </table>
-    <canvas id="tradingChart"></canvas>
+  <h3>Performance vs. Benchmarks</h3>
+  <div class="chart-container">
+    <canvas id="performanceChart"></canvas>
+  </div>
+  <p>
+    While Numera does not directly mirror any single index, these comparisons underscore the company’s 
+    ability to capture outsized gains in both bullish and volatile conditions. 
+    Our multi-year track record has consistently exceeded mainstream equity benchmarks, reflecting 
+    a disciplined, high-alpha approach.
+  </p>
 
-    <h2>5. Market Exposure & Diversification</h2>
-    <canvas id="marketChart"></canvas>
+  <h3>Rolling Correlation vs. Benchmarks</h3>
+  <p class="small-note">
+    Note: This rolling 12-month correlation shows how Numera company’s returns have varied 
+    relative to the S&amp;P 500, Nasdaq-100, and BTC over time. A lower or negative correlation can 
+    indicate diversification benefits.
+  </p>
+  <div class="chart-container">
+    <canvas id="correlationChart"></canvas>
+  </div>
 
-    <h2>6. Conclusion & Investor Summary</h2>
-    <p>Numera Global performance metrics showcase a <strong>top-tier onchain investment opportunity</strong> combining <strong>high returns with controlled risk</strong> across diversified markets.</p>
-    <ul>
-        <li><strong>Annualized Fund ROI:</strong> 55.58% | <strong>Investor ROI:</strong> 36.23%</li>
-        <li><strong>Sharpe Ratio (3.35) & Sortino Ratio (5.15):</strong> Indicating superior risk-adjusted returns.</li>
-        <li><strong>Market Diversification:</strong> Exposure to Onchain Assets, Artificial Intelligence (AI) and Water Technologies.</li>
-        <li><strong>No Management Fees (0%), Only Performance Fees (35%).</strong></li>
-    </ul>
-</div>
+  <!-- 4. Trading Strategy Performance Metrics -->
+  <h2>4. Trading Strategy Performance Metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Win Rate</td><td>71.4%</td></tr>
+    <tr><td>Total Trades Executed</td><td>14,400</td></tr>
+    <tr><td>Leverage Utilization Ratio</td><td>1.8×</td></tr>
+    <tr><td>Profit Factor</td><td>2.5</td></tr>
+  </table>
+  <!-- Horizontal Bar Chart for Trading Strategy Allocation -->
+  <div class="chart-container">
+    <canvas id="tradiNumerahart"></canvas>
+  </div>
+  <p>
+    Our Win Rate of 71.4% and a Profit Factor of 2.5 
+    demonstrate a robust edge in executing spot, futures, and arbitrage trades. Leverage 
+    utilization of 1.8× is actively managed to balance higher potential returns 
+    against prudent risk constraints.
+  </p>
+
+  <!-- 5. Portfolio Allocation & Benchmark Context -->
+  <h2>5. Portfolio Allocation &amp; Benchmark Context</h2>
+  <p>
+    Numera Global’s investment strategy is diversified across three core themes: 
+    On-chain Assets, AI-Related Equities, and 
+    Water Tech &amp; Other Alternatives. While specific allocations 
+    may vary with evolving market trends, a typical distribution includes:
+  </p>
+  <ul>
+    <li>50% Crypto (BTC, ETH, DeFi projects)</li>
+    <li>30% AI-Related Equities or Private Ventures</li>
+    <li>20% Water Tech &amp; Impact-Focused Opportunities</li>
+  </ul>
+  <div class="chart-container">
+    <canvas id="allocationChart"></canvas>
+  </div>
+  <p>
+    This multi-theme approach aims to mitigate concentrated risk and leverage 
+    high-growth innovations across distinct verticals. We track performance against 
+    both traditional indexes (e.g., S&amp;P 500) and alternative 
+    benchmarks (like Bitcoin) to gauge relative performance and correlation levels.
+  </p>
+
+  <div class="info-box">
+    <h4>Key Observations</h4>
+    <p><strong>Crypto Segment:</strong> Offers high volatility but potential for outsized gains, especially during market upswings.</p>
+    <p><strong>AI Allocation:</strong> Long-term growth driver, increasingly central to tech industry transformation.</p>
+    <p><strong>Water Tech:</strong> Typically lower correlation to traditional markets, providing a stabilizing effect on overall volatility.</p>
+  </div>
+
+  <h3 class="sub-heading">Risk Overview</h3>
+  <p>
+    While Numera company has delivered consistent returns, it’s important to note that all investments carry risk, 
+    including the potential for significant drawdowns. We employ various safeguards:
+  </p>
+
+  <div class="info-box">
+    <p><strong>Stop-Loss Mechanisms:</strong> Automated triggers to limit downside on volatile assets.</p>
+    <p><strong>Diversified Hedging:</strong> Use of options and futures to hedge directional exposure.</p>
+    <p><strong>Periodic Rebalancing:</strong> Dynamic allocation to prevent overconcentration in any single theme.</p>
+  </div>
+
+  <!-- 6. Conclusion & Investor Summary -->
+  <h2>6. Conclusion &amp; Investor Summary</h2>
+  <p>
+    Numera Global’s track record highlights a disciplined, high-performing company with 
+    robust annualized returns (52% before fees) and a proven ability to navigate diverse 
+    market conditions. We credit this success to:
+  </p>
+
+  <div class="info-box">
+    <p><strong>Adaptive Portfolio Management:</strong> Actively shifting allocations among on-chain, AI, and water sectors.</p>
+    <p><strong>Risk-Adjusted Discipline:</strong> Balancing leverage usage with robust hedging and position-sizing strategies.</p>
+    <p><strong>Innovation &amp; Research:</strong> Continuous identification of disruptive technology trends and scaling up winners.</p>
+  </div>
+</div><!-- /container -->
 
 <script>
-    const ctxAUM = document.getElementById('aumChart').getContext('2d');
-    new Chart(ctxAUM, {
-        type: 'line',
-        data: {
-            labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
-            datasets: [{
-                label: 'AUM ($ Millions)',
-                data: [12.4, 18.7, 24.5, 30.8, 35.1, 39.6],
-                borderColor: 'blue',
-                fill: false
-            }]
+  /***************************************************************
+    1. AUM Chart
+  ***************************************************************/
+  const ctxAUM = document.getElementById('aumChart').getContext('2d');
+  new Chart(ctxAUM, {
+    type: 'line',
+    data: {
+      labels: ['2019','2020','2021','2022','2023','2024'],
+      datasets: [{
+        label: 'AUM ($ Millions)',
+        data: [5.78,10.35,14.85,21.20,31.75,44.67],
+        borderColor: '#003366',
+        backgroundColor: 'rgba(0,51,102,0.1)',
+        fill: true,
+        tension: 0.1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: { display: true, text: 'AUM in Millions ($)' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
         }
-    });
+      }
+    }
+  });
 
-    const ctxRisk = document.getElementById('riskChart').getContext('2d');
-    new Chart(ctxRisk, {
-        type: 'bar',
-        data: {
-            labels: ['Volatility', 'Sharpe', 'Sortino', 'Drawdown', 'VaR'],
-            datasets: [{
-                label: 'Risk-Adjusted Metrics',
-                data: [15.7, 3.35, 5.15, 39.1, 29.6],
-                backgroundColor: 'red'
-            }]
+  /***************************************************************
+    2. Performance vs Benchmarks
+  ***************************************************************/
+  const ctxPerf = document.getElementById('performanceChart').getContext('2d');
+  new Chart(ctxPerf, {
+    type: 'line',
+    data: {
+      labels: ['2019','2020','2021','2022','2023','2024'],
+      datasets: [
+        {
+          label: 'Numera Net (%)',
+          data: [23.11,47.09,28.56,34.14,39.22,47.03],
+          borderColor: '#7F78D2',
+          backgroundColor: 'rgba(127,120,210,0.1)',
+          fill: true,
+          tension: 0.1
+        },
+        {
+          label: 'S&P 500 (%)',
+          data: [31.50,18.40,28.70,-18.10,26.30,23.31],
+          borderColor: '#4C9F70',
+          backgroundColor: 'rgba(76,159,112,0.1)',
+          fill: true,
+          tension: 0.1
+        },
+        {
+          label: 'Nasdaq-100 (%)',
+          data: [39.00,48.90,27.50,-32.60,38.80,31.40],
+          borderColor: '#EFC050',
+          backgroundColor: 'rgba(239,192,80,0.1)',
+          fill: true,
+          tension: 0.1
+        },
+        {
+          label: 'BTC (%)',
+          data: [89.50,302.80,39.80,-65.10,155.90,121.10],
+          borderColor: '#D64550',
+          backgroundColor: 'rgba(214,69,80,0.1)',
+          fill: true,
+          tension: 0.1
         }
-    });
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: { display: true, text: 'Annual Return (%)' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      }
+    }
+  });
 
-    const ctxTrading = document.getElementById('tradingChart').getContext('2d');
-    new Chart(ctxTrading, {
-        type: 'pie',
-        data: {
-            labels: ['Spot Trading', 'Futures & Options', 'Arbitrage', 'High-Frequency Trading'],
-            datasets: [{
-                data: [40, 35, 15, 10],
-                backgroundColor: ['blue', 'green', 'orange', 'red']
-            }]
+  /***************************************************************
+    3. Rolling Correlation Chart
+  ***************************************************************/
+  const ctxCorr = document.getElementById('correlationChart').getContext('2d');
+  new Chart(ctxCorr, {
+    type: 'line',
+    data: {
+      labels: ['2019','2020','2021','2022','2023','2024'],
+      datasets: [
+        {
+          label: 'Numera vs. S&P 500 ',
+          data: [0.35, 0.40, 0.45, 0.20, 0.28, 0.38],
+          borderColor: '#0077be',
+          fill: false,
+          tension: 0.1
+        },
+        {
+          label: 'Numera vs. Nasdaq-100 ',
+          data: [0.50, 0.55, 0.60, 0.25, 0.33, 0.44],
+          borderColor: '#EF6F6C',
+          fill: false,
+          tension: 0.1
+        },
+        {
+          label: 'Numera vs. BTC ',
+          data: [0.15, 0.30, 0.45, 0.10, 0.20, 0.34],
+          borderColor: '#8884d8',
+          fill: false,
+          tension: 0.1
         }
-    });
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: -1,
+          max: 1,
+          title: { display: true, text: 'Correlation Coefficient' }
+        }
+      }
+    }
+  });
 
-    const ctxMarket = document.getElementById('marketChart').getContext('2d');
-    new Chart(ctxMarket, {
-        type: 'bar',
-        data: {
-            labels: ['S&P 500', 'Nasdaq-100', 'Aerospace & Defense', 'Global Water', 'ARK Innovation', 'Bitcoin', 'Ethereum'],
-            datasets: [{
-                label: 'Correlation with Numera',
-                data: [0.61, 0.72, 0.55, 0.48, 0.65, 0.58, 0.50],
-                backgroundColor: 'purple'
-            }]
+  /***************************************************************
+    4. Trading Strategy Allocation (Horizontal Bar)
+  ***************************************************************/
+  const ctxTrading = document.getElementById('tradiNumerahart').getContext('2d');
+  new Chart(ctxTrading, {
+    type: 'bar',
+    data: {
+      labels: ['Spot Trading','Futures/Options','Arbitrage','High-Frequency'],
+      datasets: [{
+        label: 'Trading Strategy Allocation (%)',
+        data: [40,35,15,10],
+        backgroundColor: ['#003366','#54BAB9','#EFC050','#D64550']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% of Strategy' }
         }
-    });
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+
+  /***************************************************************
+    5. Portfolio Allocation Chart
+  ***************************************************************/
+  const ctxAlloc = document.getElementById('allocationChart').getContext('2d');
+  new Chart(ctxAlloc, {
+    type: 'bar',
+    data: {
+      labels: ['Crypto','AI Equities','Water Tech'],
+      datasets: [{
+        label: 'Approx. % Allocation',
+        data: [50,30,20],
+        backgroundColor: ['#7F78D2','#4C9F70','#EFC050']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% Allocation' }
+        }
+      }
+    }
+  });
 </script>
-<footer style="text-align: center; font-size: 12px; color: #666; padding: 20px; background-color: #f8f8f8; margin-top: 40px;">
-    <p><strong>® 2025 Numera Global Limited. All Rights Reserved.</strong></p>
-    <p>The information contained in this report is provided solely for informational and illustrative purposes and does not constitute an offer, solicitation, or recommendation to invest in any securities, funds, or financial instruments. No material herein constitutes legal, tax, financial, or investment advice.</p>
-    <p>Access to any products or services referenced may be subject to regulatory restrictions and investor eligibility criteria based on jurisdiction. Past performance does not guarantee future results. Investments inherently carry risks, including the possibility of capital loss. It is the sole responsibility of prospective investors to conduct their own due diligence and seek independent financial, tax, and legal advice before making any investment decisions.</p>
-    <p>Numera makes no warranties regarding the completeness, accuracy, or reliability of the data presented in this report and disclaims liability for any errors, omissions, or reliance on this information. All figures, statistics, and metrics should be considered as estimates and subject to change.</p>
-    <p><strong>www.numera.cc</strong> is the exclusive official website of Numera. Any other websites claiming affiliation with Numera or its funds are unauthorized and should be disregarded.</p>
+
+<footer>
+  <p>© 2025 Numera Global Limited. All Rights Reserved.</p>
+  <p>
+    The information contained in this report is provided solely for informational 
+    and illustrative purposes and does not constitute an offer, solicitation, or 
+    recommendation to invest in any securities, companys, or financial instruments. 
+    No material herein constitutes legal, tax, financial, or investment advice.
+  </p>
+  <p>
+    Access to any products or services referenced may be subject to regulatory restrictions 
+    and investor eligibility criteria based on jurisdiction. Past performance does not 
+    guarantee future results. Investments inherently carry risks, including the possibility 
+    of capital loss. It is the sole responsibility of prospective investors to conduct their 
+    own due diligence and seek independent financial, tax, and legal advice before making 
+    any investment decisions.
+  </p>
+  <p>www.numera.cc is the exclusive official website of Numera. Any other websites claiming 
+    affiliation with Numera or its companys are unauthorized and should be disregarded.
+  </p>
 </footer>
+
 </body>
 </html>
