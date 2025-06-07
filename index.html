@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Numera Global: NGR (2019–2024)</title>
 
   <!-- Magic.link SDK -->
   <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -26,137 +27,51 @@
     });
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/100002601" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Your original CSS styles remain unchanged */
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    .container {
-      max-width: 960px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    .title-section {
-      background-color: #003366;
-      color: #fff;
-      padding: 30px 20px;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    body { font-family: Helvetica, sans-serif; background: #f4f4f4; margin: 0; }
+    .container { max-width: 960px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .title-section { background-color: #003366; color: white; padding: 30px 20px; border-radius: 8px; text-align: center; margin-bottom: 30px; }
     .title-section h1 { font-size: 3em; margin-bottom: 10px; }
     .title-section p { font-size: 1.2em; margin: 0; }
     h2, h3, h4 { color: #003366; margin-top: 20px; margin-bottom: 10px; }
     p { line-height: 1.6; margin-bottom: 10px; }
     table { width: 100%; border-collapse: collapse; margin: 20px 0; }
     th, td { padding: 12px; border: 1px solid #ccc; text-align: left; }
-    th { background-color: #003366; color: #fff; font-weight: 600; }
-    .chart-container {
-      position: relative; width: 100%; height: 400px; margin-bottom: 30px;
-    }
-    .info-box {
-      border-left: 5px solid #003366;
-      background: #f3f8ff;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 5px;
-    }
+    th { background-color: #003366; color: white; font-weight: 600; }
+    .chart-container { position: relative; width: 100%; height: 400px; margin-bottom: 30px; }
+    .info-box { border-left: 5px solid #003366; background: #f3f8ff; padding: 15px; margin: 15px 0; border-radius: 5px; }
     .info-box h4 { margin-top: 0; }
     .small-note { font-size: 0.9em; color: #666; }
-    .sub-heading {
-      margin-top: 30px;
-      font-size: 1.1em;
-      font-weight: 600;
-      color: #555;
-    }
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-      padding: 20px;
-      background-color: #f8f8f8;
-      margin-top: 40px;
-      line-height: 1.4em;
-    }
+    .sub-heading { margin-top: 30px; font-size: 1.1em; font-weight: 600; color: #555; }
+    footer { text-align: center; font-size: 13px; color: #666; padding: 20px; background-color: #f8f8f8; margin-top: 40px; line-height: 1.4em; }
     footer p { margin: 5px 0; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .chart-container { height: 250px; }
-      table { font-size: 14px; }
-      th, td { padding: 8px; }
-      .title-section h1 { font-size: 2em; }
-      .title-section p { font-size: 1em; }
-    }
-
-    /* Login styles */
-    .login-container {
-      max-width: 400px;
-      margin: 60px auto;
-      padding: 30px;
-      background: white;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    .login-container input {
-      padding: 10px;
-      width: 80%;
-      margin-bottom: 10px;
-      font-size: 1em;
-    }
-    .login-container button {
-      background-color: #003366;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    .login-container { max-width: 400px; margin: 100px auto; text-align: center; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input[type="email"] { padding: 10px; width: 80%; margin-bottom: 10px; font-size: 1em; }
+    button { padding: 10px 20px; background: #003366; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
     .hidden { display: none; }
-    #logout-button {
-      background: #d64550;
-      color: white;
-      border: none;
-      padding: 10px;
-      margin: 10px auto 30px auto;
-      display: block;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    #logout-button { background: #d64550; margin-bottom: 20px; }
   </style>
 </head>
 <body>
 
-<!-- Login Form -->
+<!-- Login UI -->
 <div id="login" class="login-container">
-  <h2>Access Required</h2>
-  <p>Please enter your email to receive a Magic login link.</p>
+  <h2>Login Required</h2>
+  <p>Enter your email to access this report:</p>
   <form id="login-form">
     <input type="email" id="email" placeholder="your@email.com" required />
-    <br/>
-    <button type="submit">Login</button>
+    <br>
+    <button type="submit">Send Magic Link</button>
   </form>
 </div>
 
 <!-- Protected Content -->
 <div id="content" class="hidden">
-  <button id="logout-button">Logout</button>
-
-  <!-- INSERT YOUR ORIGINAL CONTENT HERE -->
-  <!-- Copied from your original code: -->
   <div class="container">
+    <button id="logout-button">Logout</button>
+    <!-- START OF ORIGINAL CONTENT -->
     <!-- Title Section -->
     <header class="title-section">
       <h1>Numera Global: Investment Report (2019–2024)</h1>
@@ -587,17 +502,15 @@
     </p>
   </footer>
 
-<!-- Magic Auth Script -->
 <script>
   const magic = new Magic('pk_live_9DAC656932318D95');
   const loginDiv = document.getElementById('login');
   const contentDiv = document.getElementById('content');
-  const loginForm = document.getElementById('login-form');
   const logoutBtn = document.getElementById('logout-button');
 
   async function checkLogin() {
-    const isLoggedIn = await magic.user.isLoggedIn();
-    if (isLoggedIn) {
+    const loggedIn = await magic.user.isLoggedIn();
+    if (loggedIn) {
       loginDiv.classList.add('hidden');
       contentDiv.classList.remove('hidden');
     } else {
@@ -606,11 +519,13 @@
     }
   }
 
-  loginForm.addEventListener('submit', async (e) => {
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
-    await magic.auth.loginWithMagicLink({ email });
-    checkLogin();
+    await magic.auth.loginWithMagicLink({
+      email,
+      redirectURI: window.location.origin + '/callback.html'
+    });
   });
 
   logoutBtn.addEventListener('click', async () => {
