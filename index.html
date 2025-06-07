@@ -30,6 +30,11 @@
   <!-- /Yandex.Metrika counter -->
 
   <style>
+    body.loading #login,
+    body.loading #content {
+      display: none !important;
+    }
+
     body { font-family: Helvetica, sans-serif; background: #f4f4f4; margin: 0; }
     .container { max-width: 960px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     .title-section { background-color: #003366; color: white; padding: 30px 20px; border-radius: 8px; text-align: center; margin-bottom: 30px; }
@@ -54,7 +59,7 @@
     #logout-button { background: #d64550; margin-bottom: 20px; }
   </style>
 </head>
-<body>
+<body class="loading">
 
 <!-- Login UI -->
 <div id="login" class="login-container">
@@ -69,6 +74,7 @@
 
 <!-- Protected Content -->
 <div id="content" class="hidden">
+  <!-- ORIGINAL CONTENT REMAINS UNCHANGED -->
   <div class="container">
     <button id="logout-button">Logout</button>
     <!-- START OF ORIGINAL CONTENT -->
@@ -501,6 +507,7 @@
       affiliation with Numera or its companys are unauthorized and should be disregarded.
     </p>
   </footer>
+</div>
 
 <script>
   const magic = new Magic('pk_live_9DAC656932318D95');
@@ -517,6 +524,9 @@
       loginDiv.classList.remove('hidden');
       contentDiv.classList.add('hidden');
     }
+
+    // ✅ Hide the loading screen now that login check is done
+    document.body.classList.remove('loading');
   }
 
   document.getElementById('login-form').addEventListener('submit', async (e) => {
