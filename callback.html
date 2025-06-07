@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Logging in...</title>
+  <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
+</head>
+<body>
+  <p>Completing login...</p>
+  <script>
+    const magic = new Magic('pk_live_9DAC656932318D95');
+
+    (async () => {
+      await magic.auth.loginWithCredential();
+      window.location.href = '/'; // Go back to your homepage
+    })();
+  </script>
+</body>
+</html>
